@@ -20,7 +20,6 @@ x = torch.tensor(1 + 0j, device=device, dtype=torch.complex64)  # 1
 def f1(z):
     return s1 * z
 
-# The multi-select format is appropriate since these concepts often have multiple correct aspects
 def f2(z):
     return x - s2 * z
 
