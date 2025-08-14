@@ -4,8 +4,7 @@ import numpy as np
 
 device = torch.device("mps" if torch.backends.mps.is_available() else "cuda" if torch.cuda.is_available() else "cpu")
 
-max_iter = 5000
-warmup = 1000
+max_iter = 1000
 
 N = 1000
 init = torch.tensor([0 + 0j, 1 + 0j], device=device, dtype=torch.complex64)
@@ -22,11 +21,6 @@ def f1(z):
 
 def f2(z):
     return x - s2 * z
-
-
-for i in range(warmup):
-    mask = torch.rand(N, device=device) < 0.5
-    z = torch.where(mask, f1(z), f2(z))
 
 for i in range(max_iter):
     mask = torch.rand(N, device=device) < 0.5
